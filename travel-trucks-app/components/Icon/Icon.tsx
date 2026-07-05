@@ -15,7 +15,14 @@ interface IconProps extends React.SVGProps<SVGSVGElement> {
 
 export const Icon: React.FC<IconProps> = ({ name, size = 20, className, ...props }) => {
     return (
-        <svg width={size} height={size} className={className} aria-hidden="true" {...props}>
+        <svg
+            width={size}
+            height={size}
+            className={className}
+            aria-hidden="true"
+            style={{ color: '#101828' }}
+            {...props}
+        >
             <use href={`/sprite.svg#${name}`} />
         </svg>
     );

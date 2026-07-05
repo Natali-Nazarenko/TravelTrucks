@@ -1,0 +1,50 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.image__wrapper {
+    margin-bottom: 32px;
+    /* Легка анімація появи картинки для кращого UX */
+    animation: fadeIn 0.5s ease-out;
+}
+
+.title {
+    font-family: var(--font-family);
+    color: var(--main);
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 0 16px 0;
+}
+
+.text {
+    font-family: var(--font-family);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: 440px;
+    margin: 0 0 32px 0;
+}
+
+.actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

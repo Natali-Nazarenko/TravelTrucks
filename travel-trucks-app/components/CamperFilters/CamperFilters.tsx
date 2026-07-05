@@ -5,6 +5,7 @@ import { Formik, Form, Field } from 'formik';
 import { getFilters } from '@/lib/api';
 import { FilterParams } from '@/types/filters';
 import Button from '../Button/Button';
+import css from './CamperFilters.module.css';
 
 interface CamperFiltersProps {
     onSearch: (filters: FilterParams) => void;
@@ -42,45 +43,60 @@ function CamperFilters({ onSearch, onClear }: CamperFiltersProps) {
             }}
         >
             {({ resetForm }) => (
-                <Form>
-                    <div>
-                        <label htmlFor="location">Location</label>
-                        <Field
-                            id="location"
-                            name="location"
-                            type="text"
-                            placeholder="Kyiv, Ukraine"
-                        ></Field>
+                <Form className={css.sidebar}>
+                    <div className={css.group}>
+                        <label className={css.label} htmlFor="location">
+                            Location
+                        </label>
+                        <div className={css.input__wrapper}>
+                            <Field
+                                className={css.input}
+                                id="location"
+                                name="location"
+                                type="text"
+                                placeholder="Kyiv, Ukraine"
+                            />
+                        </div>
                     </div>
-                    <h3>Filters</h3>
-                    <div>
-                        <p>Camper form</p>
-                        {fetchedFilters.forms.map(formValue => (
-                            <label key={formValue}>
-                                <Field type="radio" name="form" value={formValue} />
-                                {formatLabel(formValue)}
-                            </label>
-                        ))}
+                    <h3 className={css.filter__title}>Filters</h3>
+                    <div className={css.choice__group}>
+                        <p className={css.group__label}>Camper form</p>
+                        <div className={css.radio__grid}>
+                            {fetchedFilters.forms.map(formValue => (
+                                <label className={css.radio__label} key={formValue}>
+                                    <Field type="radio" name="form" value={formValue} />
+                                    {formatLabel(formValue)}
+                                </label>
+                            ))}
+                        </div>
                     </div>
-                    <div>
-                        <p>Engine</p>
-                        {fetchedFilters.engines.map(engineValue => (
-                            <label key={engineValue}>
-                                <Field type="radio" name="engine" value={engineValue} />
-                                {formatLabel(engineValue)}
-                            </label>
-                        ))}
+                    <div className={css.choice__group}>
+                        <p className={css.group__label}>Engine</p>
+                        <div className={css.radio__grid}>
+                            {fetchedFilters.engines.map(engineValue => (
+                                <label className={css.radio__label} key={engineValue}>
+                                    <Field type="radio" name="engine" value={engineValue} />
+                                    {formatLabel(engineValue)}
+                                </label>
+                            ))}
+                        </div>
                     </div>
-                    <div>
-                        <p>Transmission</p>
-                        {fetchedFilters.transmissions.map(transmissionValue => (
-                            <label key={transmissionValue}>
-                                <Field type="radio" name="transmission" value={transmissionValue} />
-                                {formatLabel(transmissionValue)}
-                            </label>
-                        ))}
+                    <div className={css.choice__group}>
+                        <p className={css.group__label}>Transmission</p>
+                        <div className={css.radio__grid}>
+                            {fetchedFilters.transmissions.map(transmissionValue => (
+                                <label className={css.radio__label} key={transmissionValue}>
+                                    <Field
+                                        type="radio"
+                                        name="transmission"
+                                        value={transmissionValue}
+                                    />
+                                    {formatLabel(transmissionValue)}
+                                </label>
+                            ))}
+                        </div>
                     </div>
-                    <div>
+                    <div className={css.buttons}>
                         <Button text="Search" type="submit" />
                         <Button
                             text="X Clear filters"
