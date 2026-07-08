@@ -2,14 +2,17 @@
 
 import { useState } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
+import dynamic from 'next/dynamic';
 
 import Button from '@/components/Button/Button';
 import CamperList from '@/components/CamperList/CamperList';
 import { getCampers } from '@/lib/api';
 import { FilterParams } from '@/types/filters';
 import CamperFilters from '@/components/CamperFilters/CamperFilters';
-import Modal from '@/components/Modal/Modal';
 import EmptyState from '@/components/EmptyState/EmptyState';
+import css from './Campers.module.css';
+
+const Modal = dynamic(() => import('@/components/Modal/Modal'), { ssr: false });
 
 function Campers() {
     const [filters, setFilters] = useState<FilterParams>({});
@@ -40,17 +43,24 @@ function Campers() {
     if (isError) return <p>Error...</p>;
 
     return (
-        <section>
+        <section className={css.container}>
             <CamperFilters onSearch={hanleSearch} onClear={handleClear} />
-            {allCampers.length > 0 ? (
-                <CamperList campers={allCampers} />
-            ) : (
-                !isLoading && <EmptyState onClear={handleClear} />
-            )}
-            {isLoading && <Modal />}
-            {hasNextPage && (
-                <Button text="Load more" type="button" onClick={() => fetchNextPage()} />
-            )}
+            <div className={css.catalog__campers}>
+                {allCampers.length > 0 ? (
+                    <CamperList campers={allCampers} />
+                ) : (
+                    !isLoading && <EmptyState onClear={handleClear} />
+                )}
+                {isLoading && <Modal />}
+                {hasNextPage && (
+                    <Button
+                        className={css.btn__loadmore}
+                        text="Load more"
+                        type="button"
+                        onClick={() => fetchNextPage()}
+                    />
+                )}
+            </div>
         </section>
     );
 }

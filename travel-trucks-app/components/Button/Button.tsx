@@ -4,6 +4,7 @@ interface ButtonProps {
     text: string;
     type?: 'button' | 'submit' | 'reset';
     onClick?: () => void;
+    className?: string;
 }
 
 function Button({ text }: ButtonProps) {

@@ -6,7 +6,9 @@ type IconName =
     | 'icon-map'
     | 'icon-petrol'
     | 'icon-star'
-    | 'icon-euro';
+    | 'icon-euro'
+    | 'icon-radio-btn-check'
+    | 'icon-radio-btn-empty';
 
 interface IconProps extends React.SVGProps<SVGSVGElement> {
     name: IconName;

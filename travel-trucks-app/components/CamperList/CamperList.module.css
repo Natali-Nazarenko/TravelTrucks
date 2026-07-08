@@ -1,0 +1,9 @@
+.block__campers__list {
+    width: 888px;
+}
+
+.campers__ul {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}

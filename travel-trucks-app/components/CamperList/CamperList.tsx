@@ -8,11 +8,13 @@ type CamperListProps = {
 
 function CamperList({ campers }: CamperListProps) {
     return (
-        <ul>
-            {campers.map(camper => (
-                <CamperItem key={camper.id} item={camper} />
-            ))}
-        </ul>
+        <section className={css.block__campers__list}>
+            <ul className={css.campers__ul}>
+                {campers.map(camper => (
+                    <CamperItem key={camper.id} item={camper} />
+                ))}
+            </ul>
+        </section>
     );
 }
 

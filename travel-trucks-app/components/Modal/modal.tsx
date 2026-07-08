@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 import css from './Modal.module.css';
@@ -10,17 +10,13 @@ interface ModalProps {
 }
 
 function Modal({ children }: ModalProps) {
-    const [mounted, setMounted] = useState(false);
-
     useEffect(() => {
-        setMounted(true);
         document.body.style.overflow = 'hidden';
         return () => {
             document.body.style.overflow = '';
         };
     }, []);
 
-    if (!mounted) return null;
     return createPortal(
         <div className={css.backdrop}>
             <div className={css.modal}>

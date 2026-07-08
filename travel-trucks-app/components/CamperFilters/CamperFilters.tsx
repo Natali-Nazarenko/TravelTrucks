@@ -6,6 +6,7 @@ import { getFilters } from '@/lib/api';
 import { FilterParams } from '@/types/filters';
 import Button from '../Button/Button';
 import css from './CamperFilters.module.css';
+import { Icon } from '../Icon/Icon';
 
 interface CamperFiltersProps {
     onSearch: (filters: FilterParams) => void;
@@ -42,7 +43,7 @@ function CamperFilters({ onSearch, onClear }: CamperFiltersProps) {
                 onSearch(values);
             }}
         >
-            {({ resetForm }) => (
+            {({ resetForm, values }) => (
                 <Form className={css.sidebar}>
                     <div className={css.group}>
                         <label className={css.label} htmlFor="location">
@@ -65,7 +66,15 @@ function CamperFilters({ onSearch, onClear }: CamperFiltersProps) {
                             {fetchedFilters.forms.map(formValue => (
                                 <label className={css.radio__label} key={formValue}>
                                     <Field type="radio" name="form" value={formValue} />
-                                    {formatLabel(formValue)}
+                                    <Icon
+                                        name={
+                                            values.form === formValue
+                                                ? 'icon-radio-btn-check'
+                                                : 'icon-radio-btn-empty'
+                                        }
+                                        size={24}
+                                    />
+                                    <span>{formatLabel(formValue)}</span>
                                 </label>
                             ))}
                         </div>
@@ -76,7 +85,15 @@ function CamperFilters({ onSearch, onClear }: CamperFiltersProps) {
                             {fetchedFilters.engines.map(engineValue => (
                                 <label className={css.radio__label} key={engineValue}>
                                     <Field type="radio" name="engine" value={engineValue} />
-                                    {formatLabel(engineValue)}
+                                    <Icon
+                                        name={
+                                            values.engine === engineValue
+                                                ? 'icon-radio-btn-check'
+                                                : 'icon-radio-btn-empty'
+                                        }
+                                        size={24}
+                                    />
+                                    <span>{formatLabel(engineValue)}</span>
                                 </label>
                             ))}
                         </div>
@@ -91,7 +108,15 @@ function CamperFilters({ onSearch, onClear }: CamperFiltersProps) {
                                         name="transmission"
                                         value={transmissionValue}
                                     />
-                                    {formatLabel(transmissionValue)}
+                                    <Icon
+                                        name={
+                                            values.transmission === transmissionValue
+                                                ? 'icon-radio-btn-check'
+                                                : 'icon-radio-btn-empty'
+                                        }
+                                        size={24}
+                                    />
+                                    <span>{formatLabel(transmissionValue)}</span>
                                 </label>
                             ))}
                         </div>
