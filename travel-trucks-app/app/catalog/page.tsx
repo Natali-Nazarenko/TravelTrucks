@@ -29,6 +29,7 @@ function Campers() {
                 return undefined;
             },
         });
+    console.log(isFetchingNextPage);
 
     const hanleSearch = (newFilters: FilterParams) => {
         setFilters(newFilters);

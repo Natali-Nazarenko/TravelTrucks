@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { Camper } from '@/types/camper';
+import { Camper, CamperDetails } from '@/types/camper';
 import { FilterParams, FiltersResponse } from '@/types/filters';
 import { Review } from '@/types/review';
 
@@ -36,12 +36,12 @@ export async function getFilters(): Promise<FiltersResponse> {
     return data;
 }
 
-export async function getCamperById(id: string) {
-    const { data } = await axios.get<Camper>(`/campers/${id}`);
+export async function getCamperById(id: string): Promise<CamperDetails> {
+    const { data } = await axios.get<CamperDetails>(`/campers/${id}`);
     return data;
 }
 
-export async function getReviewsbyId(id: string) {
+export async function getReviewsbyId(id: string): Promise<Review[]> {
     const { data } = await axios.get<Review[]>(`/campers/${id}/reviews`);
     return data;
 }

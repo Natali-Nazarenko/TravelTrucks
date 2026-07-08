@@ -7,8 +7,12 @@ interface ButtonProps {
     className?: string;
 }
 
-function Button({ text }: ButtonProps) {
-    return <button>{text}</button>;
+function Button({ text, onClick, type }: ButtonProps) {
+    return (
+        <button className={css.btn__component} onClick={onClick} type={type}>
+            {text}
+        </button>
+    );
 }
 
 export default Button;

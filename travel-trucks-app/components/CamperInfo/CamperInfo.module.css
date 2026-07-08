@@ -1,0 +1,9 @@
+.container {
+    width: 1313px;
+}
+
+.camper__block {
+    display: flex;
+    flex-direction: column;
+    gap: 88px;
+}
