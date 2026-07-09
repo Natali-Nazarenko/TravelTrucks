@@ -42,7 +42,7 @@ function CamperItem({ item }: CamperProps) {
                     <div className={css.item__title}>
                         <h2>{item.name}</h2>
                         <p>
-                            <Icon name="icon-euro" size={24} />
+                            <Icon name="icon-euro" size={32} />
                             {`${item.price}`}
                         </p>
                     </div>

@@ -63,62 +63,95 @@ function CamperFilters({ onSearch, onClear }: CamperFiltersProps) {
                     <div className={css.choice__group}>
                         <p className={css.group__label}>Camper form</p>
                         <div className={css.radio__grid}>
-                            {fetchedFilters.forms.map(formValue => (
-                                <label className={css.radio__label} key={formValue}>
-                                    <Field type="radio" name="form" value={formValue} />
-                                    <Icon
-                                        name={
-                                            values.form === formValue
-                                                ? 'icon-radio-btn-check'
-                                                : 'icon-radio-btn-empty'
-                                        }
-                                        size={24}
-                                    />
-                                    <span>{formatLabel(formValue)}</span>
-                                </label>
-                            ))}
+                            {fetchedFilters.forms.map(formValue => {
+                                const inputId = `form-${formValue}`;
+                                return (
+                                    <label
+                                        className={css.radio__label}
+                                        key={formValue}
+                                        htmlFor={inputId}
+                                    >
+                                        <Field
+                                            type="radio"
+                                            name="form"
+                                            value={formValue}
+                                            id={inputId}
+                                        />
+                                        <Icon
+                                            name={
+                                                values.form === formValue
+                                                    ? 'icon-radio-btn-check'
+                                                    : 'icon-radio-btn-empty'
+                                            }
+                                            size={24}
+                                        />
+                                        <span>{formatLabel(formValue)}</span>
+                                    </label>
+                                );
+                            })}
                         </div>
                     </div>
                     <div className={css.choice__group}>
                         <p className={css.group__label}>Engine</p>
                         <div className={css.radio__grid}>
-                            {fetchedFilters.engines.map(engineValue => (
-                                <label className={css.radio__label} key={engineValue}>
-                                    <Field type="radio" name="engine" value={engineValue} />
-                                    <Icon
-                                        name={
-                                            values.engine === engineValue
-                                                ? 'icon-radio-btn-check'
-                                                : 'icon-radio-btn-empty'
-                                        }
-                                        size={24}
-                                    />
-                                    <span>{formatLabel(engineValue)}</span>
-                                </label>
-                            ))}
+                            {fetchedFilters.engines.map(engineValue => {
+                                const inputId = `engine-${engineValue}`;
+
+                                return (
+                                    <label
+                                        className={css.radio__label}
+                                        key={engineValue}
+                                        htmlFor={inputId}
+                                    >
+                                        <Field
+                                            type="radio"
+                                            name="engine"
+                                            value={engineValue}
+                                            id={inputId}
+                                        />
+                                        <Icon
+                                            name={
+                                                values.engine === engineValue
+                                                    ? 'icon-radio-btn-check'
+                                                    : 'icon-radio-btn-empty'
+                                            }
+                                            size={24}
+                                        />
+                                        <span>{formatLabel(engineValue)}</span>
+                                    </label>
+                                );
+                            })}
                         </div>
                     </div>
                     <div className={css.choice__group}>
                         <p className={css.group__label}>Transmission</p>
                         <div className={css.radio__grid}>
-                            {fetchedFilters.transmissions.map(transmissionValue => (
-                                <label className={css.radio__label} key={transmissionValue}>
-                                    <Field
-                                        type="radio"
-                                        name="transmission"
-                                        value={transmissionValue}
-                                    />
-                                    <Icon
-                                        name={
-                                            values.transmission === transmissionValue
-                                                ? 'icon-radio-btn-check'
-                                                : 'icon-radio-btn-empty'
-                                        }
-                                        size={24}
-                                    />
-                                    <span>{formatLabel(transmissionValue)}</span>
-                                </label>
-                            ))}
+                            {fetchedFilters.transmissions.map(transmissionValue => {
+                                const inputId = `transmission-${transmissionValue}`;
+                                return (
+                                    <label
+                                        className={css.radio__label}
+                                        key={transmissionValue}
+                                        htmlFor={inputId}
+                                    >
+                                        <Field
+                                            type="radio"
+                                            name="transmission"
+                                            value={transmissionValue}
+                                            id={inputId}
+                                        />
+                                        <Icon
+                                            name={
+                                                values.transmission === transmissionValue
+                                                    ? 'icon-radio-btn-check'
+                                                    : 'icon-radio-btn-empty'
+                                            }
+                                            size={24}
+                                        />
+                                        <span>{formatLabel(transmissionValue)}</span>
+                                    </label>
+                                );
+                            })}
                         </div>
                     </div>
                     <div className={css.buttons}>

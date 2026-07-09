@@ -1,9 +1,74 @@
 .container {
     width: 1313px;
+    margin: 0 auto;
 }
 
-.camper__block {
+.camper {
     display: flex;
     flex-direction: column;
     gap: 88px;
+}
+
+.camper__info__block {
+    display: flex;
+    gap: 24px;
+}
+
+.camper__images {
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
+}
+
+.small__images {
+    display: flex;
+    gap: 32px;
+}
+
+.camper__details {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.camper__description {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px;
+    border-radius: 16px;
+    background-color: var(--inputs);
+}
+
+.camper__description h2 {
+    margin-bottom: 8px;
+}
+
+.car__price {
+    margin-top: 16px;
+}
+
+.camper__oprions {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px;
+    border-radius: 16px;
+    background-color: var(--inputs);
+}
+
+.camper__block__amenities {
+    display: flex;
+    gap: 8px;
+}
+
+.camper__amenity {
+    border-radius: 100px;
+    padding: 12px 18px;
+    background-color: var(--badges);
+    mix-blend-mode: multiply;
+}
+
+.line {
+    border: 1px solid var(--gray-light);
 }

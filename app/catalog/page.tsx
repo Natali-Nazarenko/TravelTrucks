@@ -29,9 +29,10 @@ function Campers() {
                 return undefined;
             },
         });
-    console.log(isFetchingNextPage);
 
-    const hanleSearch = (newFilters: FilterParams) => {
+    const handleSearch = (newFilters: FilterParams) => {
+        console.log('Choice filters; ', newFilters);
+
         setFilters(newFilters);
     };
 
@@ -45,7 +46,7 @@ function Campers() {
 
     return (
         <section className={css.container}>
-            <CamperFilters onSearch={hanleSearch} onClear={handleClear} />
+            <CamperFilters onSearch={handleSearch} onClear={handleClear} />
             <div className={css.catalog__campers}>
                 {allCampers.length > 0 ? (
                     <CamperList campers={allCampers} />

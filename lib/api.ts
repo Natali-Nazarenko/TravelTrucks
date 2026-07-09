@@ -15,15 +15,17 @@ interface ApiResponse {
 axios.defaults.baseURL = 'https://campers-api.goit.study';
 
 export async function getCampers(page: number, filters: FilterParams = {}): Promise<ApiResponse> {
+    console.log('filters: ', filters);
+
     const options = {
         method: 'GET',
         params: {
             page,
             perPage: 4,
             ...(filters.location && { location: filters.location }),
-            ...(filters.form && { location: filters.form }),
-            ...(filters.transmission && { location: filters.transmission }),
-            ...(filters.engine && { location: filters.engine }),
+            ...(filters.form && { form: filters.form }),
+            ...(filters.transmission && { transmission: filters.transmission }),
+            ...(filters.engine && { engine: filters.engine }),
         },
     };
 
