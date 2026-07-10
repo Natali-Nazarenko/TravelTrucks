@@ -1,9 +1,23 @@
 .block__campers__list {
     width: 888px;
+    text-align: center;
 }
 
-.campers__ul {
+.list__ul {
     display: flex;
     flex-direction: column;
     gap: 32px;
+}
+
+.list__btn__loadmore {
+    width: 145px;
+    margin: 40px 0 52px;
+    border: 1px solid var(--gray-light);
+    background-color: var(--white);
+    color: var(--main);
+}
+
+.list__btn__loadmore:hover {
+    border: 1px solid var(--green-hover);
+    background-color: var(--white);
 }

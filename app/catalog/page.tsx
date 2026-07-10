@@ -31,8 +31,6 @@ function Campers() {
         });
 
     const handleSearch = (newFilters: FilterParams) => {
-        console.log('Choice filters; ', newFilters);
-
         setFilters(newFilters);
     };
 
@@ -45,23 +43,19 @@ function Campers() {
     if (isError) return <p>Error...</p>;
 
     return (
-        <section className={css.container}>
+        <section className={`container ${css.container}`}>
             <CamperFilters onSearch={handleSearch} onClear={handleClear} />
             <div className={css.catalog__campers}>
                 {allCampers.length > 0 ? (
-                    <CamperList campers={allCampers} />
+                    <CamperList
+                        campers={allCampers}
+                        hasNextPage={hasNextPage}
+                        onLoadMore={fetchNextPage}
+                    />
                 ) : (
                     !isLoading && <EmptyState onClear={handleClear} />
                 )}
-                {isLoading && <Modal />}
-                {hasNextPage && (
-                    <Button
-                        className={css.btn__loadmore}
-                        text="Load more"
-                        type="button"
-                        onClick={() => fetchNextPage()}
-                    />
-                )}
+                {(isLoading || isFetchingNextPage) && <Modal />}
             </div>
         </section>
     );

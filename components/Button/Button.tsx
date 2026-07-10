@@ -1,5 +1,3 @@
-import css from './Button.module.css';
-
 interface ButtonProps {
     text: string;
     type?: 'button' | 'submit' | 'reset';
@@ -7,9 +5,9 @@ interface ButtonProps {
     className?: string;
 }
 
-function Button({ text, onClick, type }: ButtonProps) {
+function Button({ text, onClick, type, className }: ButtonProps) {
     return (
-        <button className={css.btn__component} onClick={onClick} type={type}>
+        <button className={className} onClick={onClick} type={type}>
             {text}
         </button>
     );

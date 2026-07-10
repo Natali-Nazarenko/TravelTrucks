@@ -30,7 +30,6 @@ export const Icon: React.FC<IconProps> = ({
             height={sizeHeight}
             className={className}
             aria-hidden="true"
-            style={{ color: '#101828' }}
             {...props}
         >
             <use href={`/sprite.svg#${name}`} />

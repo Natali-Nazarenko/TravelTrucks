@@ -4,8 +4,12 @@
     justify-content: space-between;
     width: 100vw;
     height: 72px;
-    margin-bottom: 48px;
     background-color: var(--inputs);
+}
+
+.container {
+    flex-direction: row;
+    padding: 24px 0;
 }
 
 .navigation__block {
@@ -22,10 +26,24 @@
     list-style-type: none;
 }
 
-.container {
-    width: 1313px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: row;
-    padding: 24px 0;
+.navigation__home {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.navigation__catalog {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.link {
+    color: var(--main);
+}
+
+.activeLink {
+    color: var(--grey-green);
 }
