@@ -1,9 +1,6 @@
 .container {
-    width: 1313px;
-    margin: 0 auto;
-}
-
-.camper {
+    margin-top: 64px;
+    margin-bottom: 232px;
     display: flex;
     flex-direction: column;
     gap: 88px;
@@ -14,15 +11,24 @@
     gap: 24px;
 }
 
-.camper__images {
+.camper__images__block {
     display: flex;
     flex-direction: column;
     gap: 27px;
 }
 
+.main__image {
+    border-radius: 17px;
+}
+
 .small__images {
     display: flex;
     gap: 32px;
+}
+
+.secondary__image {
+    border-radius: 16px;
+    /* border: 3px solid var(--grey-green); */
 }
 
 .camper__details {
@@ -44,6 +50,23 @@
     margin-bottom: 8px;
 }
 
+.item__rating {
+    display: flex;
+    align-items: center;
+}
+
+.rating__star {
+    color: var(--rating);
+}
+
+.item__location {
+    margin-left: 16px;
+}
+
+.item__location span {
+    margin-left: 4px;
+}
+
 .car__price {
     margin-top: 16px;
 }
@@ -51,7 +74,6 @@
 .camper__oprions {
     display: flex;
     flex-direction: column;
-    gap: 24px;
     padding: 24px;
     border-radius: 16px;
     background-color: var(--inputs);
@@ -59,6 +81,7 @@
 
 .camper__block__amenities {
     display: flex;
+    margin-top: 16px 0;
     gap: 8px;
 }
 
@@ -71,4 +94,25 @@
 
 .line {
     border: 1px solid var(--gray-light);
+}
+
+.camper__characteristics {
+    list-style: none;
+}
+
+.charac__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reviews__details {
+    display: flex;
+    gap: 48px;
+}
+
+.reviews__list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }

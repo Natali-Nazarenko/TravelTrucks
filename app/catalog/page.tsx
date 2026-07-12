@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { FormikProps } from 'formik';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 
-import Button from '@/components/Button/Button';
 import CamperList from '@/components/CamperList/CamperList';
 import { getCampers } from '@/lib/api';
 import { FilterParams } from '@/types/filters';
@@ -16,6 +16,8 @@ const Modal = dynamic(() => import('@/components/Modal/Modal'), { ssr: false });
 
 function Campers() {
     const [filters, setFilters] = useState<FilterParams>({});
+
+    const formikRef = useRef<FormikProps<FilterParams>>(null);
 
     const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading, isError } =
         useInfiniteQuery({
@@ -34,7 +36,15 @@ function Campers() {
         setFilters(newFilters);
     };
 
-    const handleClear = () => {
+    const handleClearAll = () => {
+        setFilters({});
+
+        if (formikRef.current) {
+            formikRef.current.resetForm();
+        }
+    };
+
+    const handleQueryAllCampers = () => {
         setFilters({});
     };
 
@@ -44,7 +54,7 @@ function Campers() {
 
     return (
         <section className={`container ${css.container}`}>
-            <CamperFilters onSearch={handleSearch} onClear={handleClear} />
+            <CamperFilters onSearch={handleSearch} onClear={handleClearAll} innerRef={formikRef} />
             <div className={css.catalog__campers}>
                 {allCampers.length > 0 ? (
                     <CamperList
@@ -53,7 +63,9 @@ function Campers() {
                         onLoadMore={fetchNextPage}
                     />
                 ) : (
-                    !isLoading && <EmptyState onClear={handleClear} />
+                    !isLoading && (
+                        <EmptyState onClearAll={handleClearAll} onViewAll={handleQueryAllCampers} />
+                    )
                 )}
                 {(isLoading || isFetchingNextPage) && <Modal />}
             </div>

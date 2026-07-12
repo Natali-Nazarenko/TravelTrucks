@@ -56,7 +56,7 @@ function CamperItem({ item }: CamperProps) {
                             </div>
                         </div>
                     </div>
-                    <p className={css.item__description}>{item.description}</p>
+                    <p className={css.item__desc__text}>{item.description}</p>
                     <ul className={css.item__options}>
                         <li>
                             <Icon name="icon-petrol" sizeWidth={20} />

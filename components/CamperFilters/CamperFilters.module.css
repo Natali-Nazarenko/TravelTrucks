@@ -6,116 +6,98 @@
     height: 840px;
     border-radius: 20px;
     padding: 24px;
-    background: #f7f7f7;
-    box-sizing: border-box;
+    background: var(--inputs);
 }
 
-/* Внутрішній блок фільтрів з локацією (312px * 616px) */
-.groupContainer {
-    width: 312px;
-    height: 616px;
-    display: flex;
-    flex-direction: column;
-    gap: 32px; /* Стандартний відступ між секціями фільтрів */
-    box-sizing: border-box;
-}
-
-/* Секція локації або окрема група радіокнопок */
-.group {
+.location__group {
     display: flex;
     flex-direction: column;
     width: 312px;
 }
 
-/* Напис Location */
-.label {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #6c717b;
+.location__label {
+    color: var(--gray);
     margin-bottom: 8px;
 }
 
-.input__wrapper {
+.location__input__wrapper {
     position: relative;
     width: 312px;
 }
 
-/* Текстовий інпут локації точних розмірів */
-.input {
+.location__input__icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray);
+    transition: color 0.3s ease;
+}
+
+.location__input {
     width: 312px;
     height: 56px;
-    background-color: var(--inputs);
+    background-color: var(--white);
     border: none;
     border-radius: 12px;
-    /* Лівий відступ 20px для тексту, а великий правий відступ захищає текст від налізання на майбутню іконку */
-    padding: 18px 40px 18px 20px;
+    padding: 18px 18px 18px 48px;
     font-family: 'Inter', sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 1.5;
-    color: #101828;
+    color: var(--main);
     outline: none;
-    box-sizing: border-box;
+}
+.location__input:-webkit-autofill,
+.location__input:-webkit-autofill:hover,
+.location__input:-webkit-autofill:focus,
+.location__input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px var(--white) inset !important;
 }
 
-/* Напис Filters */
-.filter__title {
+.location__input__wrapper .location__input:not(:placeholder-shown) + .location__input__icon {
+    color: var(--main);
+}
+
+.filters__title {
     font-family: 'Inter', sans-serif;
     font-weight: 600;
     font-size: 20px;
     line-height: 1.2;
-    color: #101828;
-    margin: 0;
+    color: var(--main);
+    margin: 40px 0 24px 0;
+}
+
+.filters__group {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 
 .choice__group {
     display: flex;
     flex-direction: column;
-    width: 312px;
 }
 
-/* Заголовки (label) - назви фільтрів (Camper form, Engine...) */
 .group__label {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #6c717b;
-    margin: 0 0 24px 0;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--gray-light);
+    color: var(--gray);
+    padding-bottom: 8px;
 }
 
-/* Контейнер-рядок для радіокнопок */
-.radio__grid {
+.radio__group {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    gap: 12px;
-    width: 312px;
+    gap: 8px;
 }
 
-/* Рядок для кожної плашки радіокнопки */
 .radio__label {
-    display: inline-flex;
-    flex-direction: row;
+    display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     cursor: pointer;
-    box-sizing: border-box;
     user-select: none;
-
-    /* Стилі для тексту всередині фільтрів */
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #101828;
 }
 
-/* Надійно приховуємо дефолтні кружечки, як і раніше */
 .radio__label input[type='radio'] {
     position: absolute;
     width: 1px;
@@ -129,10 +111,42 @@
     overflow: hidden;
 }
 
-/* Нижні кнопки керування (Search та Clear) */
-.buttons {
+.btn__group {
     display: flex;
-    flex-direction: column; /* Якщо на макеті вони йдуть одна під одною */
+    flex-direction: column;
     gap: 16px;
-    width: 312px;
+    margin-top: 48px;
+}
+
+.btn__search {
+    width: 100%;
+}
+
+.btn__clear {
+    width: 100%;
+    padding-left: 24px;
+    background-color: var(--white);
+    border: 1px solid var(--gray-light);
+    color: var(--main);
+    transition: border 0.3s ease;
+}
+
+.btn__clear:hover {
+    border: 1px solid var(--green-hover);
+    background-color: var(--white);
+}
+
+.btn__clear__wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.close__btn__icon {
+    position: absolute;
+    left: 90px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--main);
+    pointer-events: none;
 }

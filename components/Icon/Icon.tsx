@@ -9,7 +9,8 @@ type IconName =
     | 'icon-euro'
     | 'icon-radio-btn-check'
     | 'icon-radio-btn-empty'
-    | 'icon-travel-trucks';
+    | 'icon-travel-trucks'
+    | 'icon-close';
 
 interface IconProps extends React.SVGProps<SVGSVGElement> {
     name: IconName;
