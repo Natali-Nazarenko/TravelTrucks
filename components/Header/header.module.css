@@ -1,0 +1,49 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100vw;
+    height: 72px;
+    background-color: var(--inputs);
+}
+
+.container {
+    flex-direction: row;
+    padding: 24px 0;
+}
+
+.navigation__block {
+    margin-left: 450px;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+}
+
+.navigation li {
+    list-style-type: none;
+}
+
+.navigation__home {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.navigation__catalog {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.link {
+    color: var(--main);
+}
+
+.activeLink {
+    color: var(--grey-green);
+}
