@@ -1,10 +1,10 @@
-import Image from 'next/image';
-
 import { CamperDetails } from '@/types/camper';
 import css from './CamperInfo.module.css';
 import { Review } from '@/types/review';
 import { Icon } from '../Icon/Icon';
 import ReviewItem from '../ReviewItem/ReviewItem';
+import BookingSection from '../BookingSection/BookingSection';
+import CamperGallery from '../CamperGallery/CamperGallery';
 
 type CamperInfoProps = {
     camper: CamperDetails;
@@ -41,27 +41,7 @@ function CamperInfo({ camper, reviews }: CamperInfoProps) {
     return (
         <section className={`container ${css.container}`}>
             <div className={css.camper__info__block}>
-                <div className={css.camper__images__block}>
-                    <Image
-                        className={css.main__image}
-                        src={`${camper.gallery[0].original}`}
-                        alt="big image camper"
-                        width={638}
-                        height={505}
-                    />
-                    <div className={css.small__images}>
-                        {camper.gallery.map(ev => (
-                            <Image
-                                className={css.secondary__image}
-                                key={camper.id}
-                                src={`${ev.thumb}`}
-                                alt={`small image camper ${camper.name}`}
-                                width={136}
-                                height={144}
-                            />
-                        ))}
-                    </div>
-                </div>
+                <CamperGallery gallery={camper.gallery} camperName={camper.name} />
                 <div className={css.camper__details}>
                     <div className={css.camper__description}>
                         <div>
@@ -81,7 +61,7 @@ function CamperInfo({ camper, reviews }: CamperInfoProps) {
                                 </div>
                             </div>
                             <p className={css.car__price}>
-                                <Icon name="icon-euro" sizeWidth={32} />
+                                <Icon name="icon-euro" sizeWidth={18} />
                                 {`${camper.price}`}
                             </p>
                         </div>
@@ -138,16 +118,19 @@ function CamperInfo({ camper, reviews }: CamperInfoProps) {
                     </div>
                 </div>
             </div>
-            <div className={css.camper__reviews__block}>
+            <section className={css.camper__reviews__section}>
                 <h2>Reviews</h2>
-                <div className={css.reviews__details}>
-                    <div className={css.reviews__list}>
-                        {reviews.map(ev => (
-                            <ReviewItem key={ev.id} review={ev} />
-                        ))}
+                <div className={css.camper__reviews__block}>
+                    <div className={css.reviews__details}>
+                        <div className={css.reviews__list}>
+                            {reviews.map(ev => (
+                                <ReviewItem key={ev.id} review={ev} />
+                            ))}
+                        </div>
                     </div>
+                    <BookingSection />
                 </div>
-            </div>
+            </section>
         </section>
     );
 }

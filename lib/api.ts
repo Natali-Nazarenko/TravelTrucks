@@ -12,11 +12,14 @@ interface ApiResponse {
     totalPages: number;
 }
 
+interface BookingCamperResponse {
+    name: string;
+    email: string;
+}
+
 axios.defaults.baseURL = 'https://campers-api.goit.study';
 
 export async function getCampers(page: number, filters: FilterParams = {}): Promise<ApiResponse> {
-    console.log('filters: ', filters);
-
     const options = {
         method: 'GET',
         params: {
@@ -45,5 +48,14 @@ export async function getCamperById(id: string): Promise<CamperDetails> {
 
 export async function getReviewsbyId(id: string): Promise<Review[]> {
     const { data } = await axios.get<Review[]>(`/campers/${id}/reviews`);
+    return data;
+}
+
+export async function postCamperBooking(id: string): Promise<BookingCamperResponse> {
+    const options = {};
+    const { data } = await axios.post<BookingCamperResponse>(
+        '/campers/{camperId}/booking-requests',
+        options,
+    );
     return data;
 }
