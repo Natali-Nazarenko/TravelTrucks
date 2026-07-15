@@ -1,0 +1,54 @@
+.camper__images__block {
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
+    max-width: 638px;
+    width: 100%;
+}
+
+.main__slider {
+    width: 100%;
+    border-radius: 17px;
+    overflow: hidden;
+}
+
+.main__image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.thumbs__slider {
+    width: 100%;
+}
+
+.thumb__slide {
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.secondary__image {
+    border-radius: 16px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+/* Підсвітка активної мініатюри (зелена рамка з макету) */
+:global(.swiper-slide-thumb-active) .secondary__image {
+    border-color: var(--grey-green);
+}
+
+:global(.swiper-slide-thumb-active) {
+    opacity: 1;
+}
+
+/* Стилізація стрілочок Swiper (робимо білими та меншими) */
+.main__slider :global(.swiper-button-next),
+.main__slider :global(.swiper-button-prev) {
+    color: var(--white);
+    transform: scale(0.7);
+}

@@ -1,0 +1,118 @@
+.container {
+    margin-top: 64px;
+    margin-bottom: 232px;
+    display: flex;
+    flex-direction: column;
+    gap: 88px;
+}
+
+.camper__info__block {
+    display: flex;
+    gap: 24px;
+}
+
+.camper__details {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.camper__description {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px;
+    border-radius: 16px;
+    background-color: var(--inputs);
+}
+
+.camper__description h2 {
+    margin-bottom: 8px;
+}
+
+.item__rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.rating__star {
+    color: var(--rating);
+}
+
+.item__location {
+    margin-left: 16px;
+}
+
+.item__location span {
+    margin-left: 4px;
+}
+
+.car__price {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 1.33333;
+}
+
+.car__description {
+    color: var(--text);
+}
+
+.camper__oprions {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    border-radius: 16px;
+    background-color: var(--inputs);
+}
+
+.camper__block__amenities {
+    display: flex;
+    margin: 16px 0;
+    gap: 8px;
+}
+
+.camper__amenity {
+    border-radius: 100px;
+    padding: 12px 18px;
+    background-color: var(--badges);
+    mix-blend-mode: multiply;
+}
+
+.line {
+    border: 1px solid var(--gray-light);
+}
+
+.camper__characteristics {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 16px;
+    list-style: none;
+}
+
+.charac__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.camper__reviews__section h2 {
+    margin-bottom: 24px;
+}
+
+.camper__reviews__block {
+    display: flex;
+    gap: 48px;
+}
+
+.reviews__details {
+    display: flex;
+    gap: 48px;
+}
+
+.reviews__list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}

@@ -6,16 +6,34 @@ type IconName =
     | 'icon-map'
     | 'icon-petrol'
     | 'icon-star'
-    | 'icon-euro';
+    | 'icon-euro'
+    | 'icon-radio-btn-check'
+    | 'icon-radio-btn-empty'
+    | 'icon-travel-trucks'
+    | 'icon-close'
+    | 'icon-warning';
 
 interface IconProps extends React.SVGProps<SVGSVGElement> {
     name: IconName;
-    size?: number;
+    sizeWidth?: number;
+    sizeHeight?: number;
 }
 
-export const Icon: React.FC<IconProps> = ({ name, size = 20, className, ...props }) => {
+export const Icon: React.FC<IconProps> = ({
+    name,
+    sizeWidth = 20,
+    sizeHeight = sizeWidth,
+    className,
+    ...props
+}) => {
     return (
-        <svg width={size} height={size} className={className} aria-hidden="true" {...props}>
+        <svg
+            width={sizeWidth}
+            height={sizeHeight}
+            className={className}
+            aria-hidden="true"
+            {...props}
+        >
             <use href={`/sprite.svg#${name}`} />
         </svg>
     );

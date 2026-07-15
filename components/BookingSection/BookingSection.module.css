@@ -1,0 +1,78 @@
+.booking__section {
+    width: 641px;
+    padding: 44px;
+    border: 1px solid var(--gray-light);
+    border-radius: 16px;
+}
+
+.booking__section h3 {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+}
+
+.booking__section p {
+    color: var(--gray);
+    margin-bottom: 24px;
+}
+
+.input__group {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.form__group {
+    position: relative;
+}
+
+.label__badge {
+    position: absolute;
+    left: 16px;
+    top: -10px;
+    border-radius: 8px;
+    padding: 0px 8px;
+    background-color: var(--error-background);
+    padding: 0 6px;
+    font-size: 12px;
+    line-height: 1.33333;
+    color: var(--error-red);
+    pointer-events: none;
+}
+
+.input {
+    width: 100%;
+    height: 60px;
+    border-radius: 12px;
+    border: none;
+    padding: 18px 48px 18px 18px;
+    background-color: var(--inputs);
+    transition: all 0.2s ease;
+}
+
+.form__group.has__error .input {
+    background-color: var(--error-background);
+    border: 1px solid var(--error-red);
+}
+
+.input:focus {
+    outline: none;
+}
+
+.submit__btn {
+    width: 100%;
+    margin-top: 24px;
+}
+
+.icon__error {
+    position: absolute;
+    right: 18px;
+    top: 35%;
+    transform: translateY(-50%);
+    color: var(--error-red);
+}
+
+.error__message {
+    color: var(--error-red);
+}
