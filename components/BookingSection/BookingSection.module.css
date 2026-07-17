@@ -5,6 +5,16 @@
     border-radius: 16px;
 }
 
+.fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.fieldset:disabled {
+    opacity: 0.6;
+}
+
 .booking__section h3 {
     font-weight: 600;
     font-size: 20px;

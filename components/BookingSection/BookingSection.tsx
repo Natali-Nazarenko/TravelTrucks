@@ -7,6 +7,8 @@ import * as Yup from 'yup';
 import css from './BookingSection.module.css';
 import Button from '../Button/Button';
 import { Icon } from '../Icon/Icon';
+import { BookingCamperData } from '@/types/booking';
+import { postCamperBooking } from '@/lib/api';
 
 interface ValuesFormBooking {
     name: string;
@@ -18,10 +20,32 @@ const initialValues: ValuesFormBooking = {
     email: '',
 };
 
-function BookingSection() {
+type BookingSectionProps = {
+    camperId: string;
+    isBooked: boolean;
+    onBookingStart: () => void;
+    onBookingSuccess: (serverMessage: string) => void;
+};
+
+function BookingSection({
+    camperId,
+    isBooked,
+    onBookingStart,
+    onBookingSuccess,
+}: BookingSectionProps) {
+    const { mutate, isPending } = useMutation({
+        mutationFn: (value: BookingCamperData) => postCamperBooking(camperId, value),
+        onMutate: () => {
+            onBookingStart();
+        },
+        onSuccess: data => {
+            onBookingSuccess(data.message || 'This camper booking success!');
+        },
+    });
+
     const BookingSchema = Yup.object().shape({
         name: Yup.string()
-            .required('Comment is required!')
+            .required('Name is required!')
             .trim()
             .matches(/^[a-zA-Zа-яА-ЯіІїЇєЄґҐ\s]+$/, 'The name can only contain letters and spaces.')
             .test(
@@ -41,8 +65,8 @@ function BookingSection() {
             <Formik
                 initialValues={initialValues}
                 validationSchema={BookingSchema}
-                onSubmit={values => {
-                    console.log('Data booking: ', values);
+                onSubmit={(values, { resetForm }) => {
+                    mutate(values, { onSuccess: () => resetForm });
                 }}
             >
                 {({ errors, touched }) => {
@@ -50,65 +74,71 @@ function BookingSection() {
                     const isEmailError = !!(errors.email && touched.email);
                     return (
                         <Form>
-                            <div className={css.input__group}>
-                                <div
-                                    className={`${css.form__group} ${isnameError ? css.has__error : ''}`}
-                                >
-                                    <Field
-                                        id="name"
-                                        name="name"
-                                        type="text"
-                                        placeholder={isnameError ? '' : 'Name*'}
-                                        className={css.input}
-                                    />
-                                    {isnameError && (
-                                        <label htmlFor="name" className={css.label__badge}>
-                                            Name*
-                                        </label>
-                                    )}
-                                    {isnameError && (
-                                        <Icon
-                                            name="icon-warning"
-                                            sizeWidth={24}
-                                            className={css.icon__error}
+                            <fieldset disabled={isPending || isBooked} className={css.fieldset}>
+                                <div className={css.input__group}>
+                                    <div
+                                        className={`${css.form__group} ${isnameError ? css.has__error : ''}`}
+                                    >
+                                        <Field
+                                            id="name"
+                                            name="name"
+                                            type="text"
+                                            placeholder={isnameError ? '' : 'Name*'}
+                                            className={css.input}
                                         />
-                                    )}
-                                    <ErrorMessage
-                                        name="name"
-                                        component="span"
-                                        className={css.error__message}
-                                    />
-                                </div>
-                                <div
-                                    className={`${css.form__group} ${isEmailError ? css.has__error : ''}`}
-                                >
-                                    <Field
-                                        id="email"
-                                        name="email"
-                                        type="email"
-                                        placeholder={isEmailError ? '' : 'Email*'}
-                                        className={css.input}
-                                    />
-                                    {isEmailError && (
-                                        <label htmlFor="email" className={css.label__badge}>
-                                            Email*
-                                        </label>
-                                    )}
-                                    {isEmailError && (
-                                        <Icon
-                                            name="icon-warning"
-                                            sizeWidth={24}
-                                            className={css.icon__error}
+                                        {isnameError && (
+                                            <label htmlFor="name" className={css.label__badge}>
+                                                Name*
+                                            </label>
+                                        )}
+                                        {isnameError && (
+                                            <Icon
+                                                name="icon-warning"
+                                                sizeWidth={24}
+                                                className={css.icon__error}
+                                            />
+                                        )}
+                                        <ErrorMessage
+                                            name="name"
+                                            component="span"
+                                            className={css.error__message}
                                         />
-                                    )}
-                                    <ErrorMessage
-                                        name="email"
-                                        component="span"
-                                        className={css.error__message}
-                                    />
+                                    </div>
+                                    <div
+                                        className={`${css.form__group} ${isEmailError ? css.has__error : ''}`}
+                                    >
+                                        <Field
+                                            id="email"
+                                            name="email"
+                                            type="email"
+                                            placeholder={isEmailError ? '' : 'Email*'}
+                                            className={css.input}
+                                        />
+                                        {isEmailError && (
+                                            <label htmlFor="email" className={css.label__badge}>
+                                                Email*
+                                            </label>
+                                        )}
+                                        {isEmailError && (
+                                            <Icon
+                                                name="icon-warning"
+                                                sizeWidth={24}
+                                                className={css.icon__error}
+                                            />
+                                        )}
+                                        <ErrorMessage
+                                            name="email"
+                                            component="span"
+                                            className={css.error__message}
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                            <Button text="Send" type="submit" className={css.submit__btn} />
+                            </fieldset>
+                            <Button
+                                text={isPending ? 'Sending...' : isBooked ? 'Booked ✔' : 'Send'}
+                                type="submit"
+                                className={css.submit__btn}
+                            />
                         </Form>
                     );
                 }}
