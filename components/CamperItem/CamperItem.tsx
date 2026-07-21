@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 
 import { Camper } from '@/types/camper';
 import css from './CamperItem.module.css';
@@ -13,8 +12,6 @@ interface CamperProps {
 }
 
 function CamperItem({ item }: CamperProps) {
-    const router = useRouter();
-
     const formatLocation = (location: string) => {
         if (!location) return '';
         const parts = location.split(',').map(part => part.trim());
@@ -23,12 +20,12 @@ function CamperItem({ item }: CamperProps) {
     };
 
     const handleClick = () => {
-        router.push(`/catalog/${item.id}`);
+        window.open(`/catalog/${item.id}`, '_blank', 'noopener,noreferrer');
     };
 
     return (
         <div className={css.block__camper__item}>
-            <li className={css.item__li}>
+            <div className={css.item}>
                 <Image
                     className={css.item__image}
                     src={item.coverImage}
@@ -73,7 +70,7 @@ function CamperItem({ item }: CamperProps) {
                     </ul>
                     <Button text="Show more" onClick={handleClick} type="button" />
                 </div>
-            </li>
+            </div>
         </div>
     );
 }

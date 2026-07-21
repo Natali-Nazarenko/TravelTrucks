@@ -75,6 +75,10 @@
     margin-top: 24px;
 }
 
+.submit__btn:disabled {
+    background-color: var(--gray-light);
+}
+
 .icon__error {
     position: absolute;
     right: 18px;

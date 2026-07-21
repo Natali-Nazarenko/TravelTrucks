@@ -28,9 +28,7 @@ async function CamperDetails({ params }: CamperInfoProps) {
             queryKey: ['reviews', camperId],
             queryFn: () => getReviewsbyId(camperId),
         });
-    } catch (error) {
-        console.log('Error camperId: ', error);
-
+    } catch {
         throw new Error('Failed to load camper data from server');
     }
 

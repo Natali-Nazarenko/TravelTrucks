@@ -1,7 +1,5 @@
 'use client';
 
-import { useEffect } from 'react';
-
 import Button from '@/components/Button/Button';
 import css from './Error.module.css';
 
@@ -11,9 +9,6 @@ type ErrorProps = {
 };
 
 function Error({ error, reset }: ErrorProps) {
-    useEffect(() => {
-        console.log('Capture app error: ', error);
-    }, [error]);
     return (
         <div className={css.error__page}>
             <main className={`container ${css.error__container}`}>

@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+markdown# TravelTrucks — Campervan Rental Service
 
-## Getting Started
+An e-commerce web application for discovering and booking campervans (campers). This project is
+designed to help users browse available trucks, view detailed descriptions, features, and reviews,
+filter results based on specific equipment and location, and instantly book a vehicle.
 
-First, run the development server:
+## 🚀 Live Demo
+
+[Open Live Demo](https://vercel.app)
+
+## 🛠️ Tech Stack & Features
+
+- **Framework:** Next.js (App Router)
+- **Language:** TypeScript
+- **State Management & Data Fetching:** TanStack Query (`useInfiniteQuery` & `useMutation`)
+- **Form Handling & Validation:** Formik + Yup
+- **Styling:** CSS Modules + Flexbox layout
+- **HTTP Client:** Axios
+
+### Core Features Implemented:
+
+- **Dynamic Camper Catalog:** Displays vehicle list fetched from a remote API.
+- **Smooth Infinite Scrolling:** Efficiently loads campers in chunks of 4 items using a React-free,
+  high-performance CSS animation (`@keyframes`) for smooth fade-in effects.
+- **Detailed Camper View:** Users can click "Show more" to open detailed specs, equipment details,
+  and reviews in a separate browser tab.
+- **Booking System:** A robust client-validated booking form with real-time UI states (locks inputs
+  and changes button styles to a disabled "Booked ✔" state upon success).
+
+## 💻 Getting Started
+
+Follow these steps to run the application locally in development mode:
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Natali-Nazarenko/TravelTrucks
+cd travel-trucks-app
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Setup Environment Variables (Optional)
+
+```env
+NEXT_PUBLIC_API_BASE_URL=https://campers-api.goit.study
+```
+
+### 4. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `/app` — Next.js routing and page definitions (`/catalog`, `/catalog/[id]`).
+- `/components` — Reusable UI modules (`CamperFilters`, `CamperList`, `BookingSection`, etc).
+- `/types` — TypeScript interfaces (`camper.ts`, `booking.ts`, `filters.ts`, `review.ts`).
+- `/lib` — API service module (`api.ts`) containing Axios configuration and server request
+  functions.

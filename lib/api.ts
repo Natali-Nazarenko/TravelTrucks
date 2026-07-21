@@ -15,7 +15,7 @@ type ApiResponse = {
 
 type BookingResponse = { message: string };
 
-axios.defaults.baseURL = 'https://campers-api.goit.study';
+axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export async function getCampers(page: number, filters: FilterParams = {}): Promise<ApiResponse> {
     const options = {

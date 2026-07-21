@@ -5,7 +5,7 @@
     background: var(--inputs);
 }
 
-.item__li {
+.item {
     display: flex;
     gap: 24px;
 }

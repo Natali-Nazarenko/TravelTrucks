@@ -136,7 +136,8 @@ function BookingSection({
                             </fieldset>
                             <Button
                                 text={isPending ? 'Sending...' : isBooked ? 'Booked ✔' : 'Send'}
-                                type="submit"
+                                type={isBooked ? 'button' : 'submit'}
+                                disabled={isPending || isBooked}
                                 className={css.submit__btn}
                             />
                         </Form>

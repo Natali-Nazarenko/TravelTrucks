@@ -60,7 +60,7 @@ function Campers() {
                     connection or try again.
                 </p>
                 <Button
-                    text="Relosd Catalog"
+                    text="Reload Catalog"
                     type="button"
                     onClick={() => window.location.reload()}
                     className={css.error__btn}
