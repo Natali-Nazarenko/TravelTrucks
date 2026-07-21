@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import css from './Header.module.css';
+import css from './AppHeader.module.css';
 import { Icon } from '../Icon/Icon';
 
 function Header() {
