@@ -1,4 +1,4 @@
-markdown# TravelTrucks — Campervan Rental Service
+# TravelTrucks — Campervan Rental Service
 
 An e-commerce web application for discovering and booking campervans (campers). This project is
 designed to help users browse available trucks, view detailed descriptions, features, and reviews,
@@ -6,7 +6,7 @@ filter results based on specific equipment and location, and instantly book a ve
 
 ## 🚀 Live Demo
 
-[Open Live Demo](https://vercel.app)
+[Open Live Demo](https://travel-trucks-omega-drab.vercel.app/)
 
 ## 🛠️ Tech Stack & Features
 
