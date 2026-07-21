@@ -12,21 +12,13 @@ const Modal = dynamic(() => import('@/components/Modal/Modal'), { ssr: false });
 function CamperDetailsClient() {
     const { camperId } = useParams<{ camperId: string }>();
 
-    const {
-        data: camper,
-        isLoading: isLoadingCamper,
-        error: errorCamper,
-    } = useQuery({
+    const { data: camper, isLoading: isLoadingCamper } = useQuery({
         queryKey: ['camper', camperId],
         queryFn: () => getCamperById(camperId),
         refetchOnMount: false,
     });
 
-    const {
-        data: reviews,
-        isLoading: isLoadingReviews,
-        error: errorReviews,
-    } = useQuery({
+    const { data: reviews, isLoading: isLoadingReviews } = useQuery({
         queryKey: ['reviews', camperId],
         queryFn: () => getReviewsbyId(camperId),
         refetchOnMount: false,
@@ -34,7 +26,6 @@ function CamperDetailsClient() {
 
     const isPageloading = isLoadingCamper || isLoadingReviews;
 
-    if (errorCamper || errorReviews) return <p>Something went wrong...</p>;
     return (
         <>
             {isPageloading && <Modal />}

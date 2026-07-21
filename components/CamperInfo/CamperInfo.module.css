@@ -12,6 +12,7 @@
 }
 
 .camper__details {
+    max-width: 650px;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -68,6 +69,7 @@
 
 .camper__block__amenities {
     display: flex;
+    flex-wrap: wrap;
     margin: 16px 0;
     gap: 8px;
 }

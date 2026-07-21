@@ -7,6 +7,7 @@
     display: flex;
     flex-direction: column;
     gap: 32px;
+    list-style: none;
 }
 
 .list__btn__loadmore {
@@ -18,7 +19,24 @@
     transition: border 0.3s ease;
 }
 
+.camper__item__animated {
+    animation: showCards 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
 .list__btn__loadmore:hover {
     border: 1px solid var(--green-hover);
     background-color: var(--white);
+}
+
+@keyframes showCards {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

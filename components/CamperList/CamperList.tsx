@@ -14,7 +14,9 @@ function CamperList({ campers, hasNextPage, onLoadMore }: CamperListProps) {
         <section className={css.block__campers__list}>
             <ul className={css.list__ul}>
                 {campers.map(camper => (
-                    <CamperItem key={camper.id} item={camper} />
+                    <li key={camper.id} className={css.camper__item__animated}>
+                        <CamperItem item={camper} />
+                    </li>
                 ))}
             </ul>
             {hasNextPage && (

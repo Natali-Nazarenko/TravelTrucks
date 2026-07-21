@@ -1,13 +1,14 @@
 interface ButtonProps {
     text: string;
     type?: 'button' | 'submit' | 'reset';
+    disabled?: boolean;
     onClick?: () => void;
     className?: string;
 }
 
-function Button({ text, onClick, type, className }: ButtonProps) {
+function Button({ text, onClick, type, disabled, className }: ButtonProps) {
     return (
-        <button className={className} onClick={onClick} type={type}>
+        <button className={className} onClick={onClick} type={type} disabled={disabled}>
             {text}
         </button>
     );

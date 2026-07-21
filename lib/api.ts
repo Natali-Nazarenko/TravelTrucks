@@ -3,21 +3,19 @@ import axios from 'axios';
 import { Camper, CamperDetails } from '@/types/camper';
 import { FilterParams, FiltersResponse } from '@/types/filters';
 import { Review } from '@/types/review';
+import { BookingCamperData } from '@/types/booking';
 
-interface ApiResponse {
+type ApiResponse = {
     campers: Camper[];
     page: number;
     perPage: number;
     total: number;
     totalPages: number;
-}
+};
 
-interface BookingCamperResponse {
-    name: string;
-    email: string;
-}
+type BookingResponse = { message: string };
 
-axios.defaults.baseURL = 'https://campers-api.goit.study';
+axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export async function getCampers(page: number, filters: FilterParams = {}): Promise<ApiResponse> {
     const options = {
@@ -51,11 +49,13 @@ export async function getReviewsbyId(id: string): Promise<Review[]> {
     return data;
 }
 
-export async function postCamperBooking(id: string): Promise<BookingCamperResponse> {
-    const options = {};
-    const { data } = await axios.post<BookingCamperResponse>(
-        '/campers/{camperId}/booking-requests',
-        options,
+export async function postCamperBooking(
+    camperId: string,
+    user: BookingCamperData,
+): Promise<BookingResponse> {
+    const { data } = await axios.post<BookingResponse>(
+        `/campers/${camperId}/booking-requests`,
+        user,
     );
     return data;
 }

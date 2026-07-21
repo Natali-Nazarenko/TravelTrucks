@@ -1,3 +1,8 @@
+'use client';
+
+import dynamic from 'next/dynamic';
+import { useState } from 'react';
+
 import { CamperDetails } from '@/types/camper';
 import css from './CamperInfo.module.css';
 import { Review } from '@/types/review';
@@ -6,12 +11,31 @@ import ReviewItem from '../ReviewItem/ReviewItem';
 import BookingSection from '../BookingSection/BookingSection';
 import CamperGallery from '../CamperGallery/CamperGallery';
 
+const Modal = dynamic(() => import('@/components/Modal/Modal'), { ssr: false });
+
 type CamperInfoProps = {
     camper: CamperDetails;
     reviews: Review[];
 };
 
+type ModalState = {
+    isOpen: boolean;
+    text: {
+        title: string;
+        paragraph: string;
+    };
+    type: 'loading' | 'success';
+};
+
 function CamperInfo({ camper, reviews }: CamperInfoProps) {
+    const [modal, setModal] = useState<ModalState>({
+        isOpen: false,
+        text: { title: '', paragraph: '' },
+        type: 'loading',
+    });
+
+    const [isBooked, setisBooked] = useState(false);
+
     const formatLocation = (location: string) => {
         if (!location) return '';
         const parts = location.split(',').map(part => part.trim());
@@ -20,7 +44,7 @@ function CamperInfo({ camper, reviews }: CamperInfoProps) {
     };
 
     const formatCharacForm = (charac: string) => {
-        if (!location) return '';
+        if (!charac) return '';
         const parts = charac.split('_').map(part => part.trim());
         if (parts.length < 2) return parts[0][0].toUpperCase();
         return `${parts[0][0].toUpperCase()}${parts[0].slice(1)} ${parts[1]}`;
@@ -38,14 +62,48 @@ function CamperInfo({ camper, reviews }: CamperInfoProps) {
         return `${formatCharacSize(parts[0])} / ${parts[1]}`;
     };
 
+    const handleBookingInProcess = () => {
+        setModal({
+            isOpen: true,
+            text: {
+                title: 'Please wait...',
+                paragraph: 'We are booking your favourite camper.',
+            },
+            type: 'loading',
+        });
+    };
+
+    const handleBookingSuccess = (serverMessage: string) => {
+        setModal({
+            isOpen: true,
+            text: {
+                title: 'Success!',
+                paragraph: serverMessage,
+            },
+            type: 'success',
+        });
+        setisBooked(true);
+        setTimeout(() => {
+            setModal({
+                isOpen: false,
+                text: { title: '', paragraph: '' },
+                type: 'loading',
+            });
+        }, 2000);
+    };
+
     return (
         <section className={`container ${css.container}`}>
+            {modal.isOpen && <Modal text={modal.text} type={modal.type} />}
             <div className={css.camper__info__block}>
                 <CamperGallery gallery={camper.gallery} camperName={camper.name} />
                 <div className={css.camper__details}>
                     <div className={css.camper__description}>
                         <div>
-                            <h2>{camper.name}</h2>
+                            <h2>
+                                {camper.name}
+                                {isBooked && <span className={css.booked__badge}> (booked)</span>}
+                            </h2>
                             <div className={css.item__rating}>
                                 <Icon
                                     name="icon-star"
@@ -70,8 +128,8 @@ function CamperInfo({ camper, reviews }: CamperInfoProps) {
                     <div className={css.camper__oprions}>
                         <h2>Vehicle details</h2>
                         <div className={css.camper__block__amenities}>
-                            {camper.amenities.map(ev => (
-                                <div key={camper.id} className={css.camper__amenity}>
+                            {camper.amenities.map((ev, index) => (
+                                <div key={`${camper.id}-${index}`} className={css.camper__amenity}>
                                     {`${ev[0].toUpperCase()}${ev.slice(1)}`}
                                 </div>
                             ))}
@@ -128,7 +186,12 @@ function CamperInfo({ camper, reviews }: CamperInfoProps) {
                             ))}
                         </div>
                     </div>
-                    <BookingSection />
+                    <BookingSection
+                        camperId={camper.id}
+                        isBooked={isBooked}
+                        onBookingStart={handleBookingInProcess}
+                        onBookingSuccess={handleBookingSuccess}
+                    />
                 </div>
             </section>
         </section>

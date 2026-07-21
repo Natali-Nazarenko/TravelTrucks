@@ -11,6 +11,7 @@ import { FilterParams } from '@/types/filters';
 import CamperFilters from '@/components/CamperFilters/CamperFilters';
 import EmptyState from '@/components/EmptyState/EmptyState';
 import css from './Campers.module.css';
+import Button from '@/components/Button/Button';
 
 const Modal = dynamic(() => import('@/components/Modal/Modal'), { ssr: false });
 
@@ -50,7 +51,23 @@ function Campers() {
 
     const allCampers = data?.pages.flatMap(page => page.campers) || [];
 
-    if (isError) return <p>Error...</p>;
+    if (isError) {
+        return (
+            <section className={`container ${css.error__container}`}>
+                <h2>Failed to load campers catalog</h2>
+                <p>
+                    There was an error fetching the data from the server. Please check your internet
+                    connection or try again.
+                </p>
+                <Button
+                    text="Reload Catalog"
+                    type="button"
+                    onClick={() => window.location.reload()}
+                    className={css.error__btn}
+                />
+            </section>
+        );
+    }
 
     return (
         <section className={`container ${css.container}`}>
